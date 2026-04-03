@@ -1,8 +1,6 @@
-# AUV Vision Pipeline (ROS 2 Humble)
+# AUV Vision Pipeline using ROS 2(Humble)
 
-## Installation & Setup (Laptop/x86)
-
-This path is designed for developers testing the pipeline locally on a standard x86 machine (e.g., Fedora/Ubuntu laptop).
+## Installation & Setup
 
 ### Prerequisites
 
