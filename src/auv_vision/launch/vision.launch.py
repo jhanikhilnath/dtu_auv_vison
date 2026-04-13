@@ -12,8 +12,8 @@ def generate_launch_description():
         ),
         Node(
             package='auv_vision',
-            executable='clahe_node',
-            name='clahe_node',
+            executable='enhancement_node',
+            name='enhancement_node',
             output='screen'
         )
     ])

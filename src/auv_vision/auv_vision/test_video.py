@@ -20,7 +20,8 @@ def test_pipeline(video_path, output_dir):
     fps = int(cap.get(cv2.CAP_PROP_FPS))
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
-    output_filename = os.path.join(output_dir, "enhanced_test_output.mp4")
+    output_filename = os.path.join(
+        output_dir, "enhanced_test_output_grayworld+clahe+saturationInc.mp4")
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     writer = cv2.VideoWriter(output_filename, fourcc, fps, (width, height))
 

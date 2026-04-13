@@ -19,13 +19,13 @@ setup(
     zip_safe=True,
     maintainer='Nikhil',
     maintainer_email='dev@todo.todo',
-    description='AUV Vision Pipeline with OpenCL CLAHE',
-    license='TODO: License declaration',
+    description='AUV Vision Pipeline',
+    license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'camera_node = auv_vision.camera_node:main',
-            'clahe_node = auv_vision.clahe_node:main'
+            'enhancement_node = auv_vision.enhancement_node:main'
         ],
     },
 )
