@@ -14,8 +14,7 @@ class EnhancementNode(Node):
         cuda_device_count = cv2.cuda.getCudaEnabledDeviceCount()
 
         if cuda_device_count > 0:
-            gpu_name = cv2.cuda.DeviceInfo(0).name()
-            self.get_logger().info(f"CUDA Enabled: True (Detected GPU: {gpu_name})")
+            self.get_logger().info(f"CUDA Enabled: True (Detected GPU)")
         else:
             self.get_logger().error(f"CUDA Enabled: False! OpenCV was not compiled with CUDA, or the container cannot see the GPU.")
         # -----------------------------

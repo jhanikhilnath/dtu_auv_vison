@@ -67,7 +67,8 @@ class VisionEnhancerCUDA:
 
     def apply_clahe_and_saturation_cuda(self, gpu_mat, saturation_boost=1.3):
         """
-        Performs CLAHE and Saturation Boosting simultaneously entirely inside the NVIDIA GPU VRAM
+        Performs CLAHE and Saturation Boosting simultaneously entirely inside
+        the NVIDIA GPU VRAM to bypass the PCIe bottleneck.
         """
         # 1. Convert to LAB space using CUDA
         gpu_lab = cv2.cuda.cvtColor(gpu_mat, cv2.COLOR_BGR2LAB)
@@ -79,10 +80,11 @@ class VisionEnhancerCUDA:
         gpu_b = gpu_channels[2]
 
         # 3. Structure: Apply CUDA CLAHE to the L channel
-        gpu_l = self.clahe_cuda.apply(gpu_l)
+        # FIX: Explicitly pass a CUDA Stream to satisfy the Python bindings
+        stream = cv2.cuda_Stream()
+        gpu_l = self.clahe_cuda.apply(gpu_l, stream)
 
         # 4. Vibrancy: Boost A and B channels
-        # .convertTo() is the CUDA equivalent of cv2.convertScaleAbs
         beta = 128 * (1.0 - saturation_boost)
         gpu_a = gpu_a.convertTo(cv2.CV_8U, alpha=saturation_boost, beta=beta)
         gpu_b = gpu_b.convertTo(cv2.CV_8U, alpha=saturation_boost, beta=beta)
